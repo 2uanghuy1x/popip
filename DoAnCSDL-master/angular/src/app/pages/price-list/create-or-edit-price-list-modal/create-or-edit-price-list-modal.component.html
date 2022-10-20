@@ -1,0 +1,59 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="createOrUpdatePriceList" aria-hidden="true" style="margin-top: 3%;">
+    <div class="modal-dialog tmss-modal-md" >
+        <div class="modal-content tmss-modal">
+            <div class="tmss-modal-header">
+                <h6 class="modal-title">
+                     <p *ngIf="!selectedPriceList?.VehicleType"> Thêm giá </p>
+                    <p *ngIf="selectedPriceList?.VehicleType"> Sửa giá </p>
+                </h6>
+                <button type="button" class="close" aria-label="Close" (click)="hide()">
+                  <span class="tmss-close" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <tmss-combobox [text]="'Loại xe'" name="VehicleType" [items]="vhcTypes" [(ngModel)]="vehicleType" [isDisabled]="disableVhcType"></tmss-combobox>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <tmss-text-input [text]="'Khung giờ 1'" name="TimeFrame1" [(ngModel)]="timeFrame1" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                    </div>
+                    <div class="col-6">
+                        <tmss-text-input [text]="'Giá khung giờ 1'" name="TimePrice1" [(ngModel)]="timePrice1" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                  <div class="col-6">
+                      <tmss-text-input [text]="'Khung giờ 2'" name="TimeFrame2" [(ngModel)]="timeFrame2" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                  </div>
+                  <div class="col-6">
+                      <tmss-text-input [text]="'Giá khung giờ 2'" name="TimePrice2" [(ngModel)]="timePrice2" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                  </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-6">
+                    <tmss-text-input [text]="'Khung giờ 3'" name="TimeFrame3" [(ngModel)]="timeFrame3" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                </div>
+                <div class="col-6">
+                    <tmss-text-input [text]="'Giá khung giờ 3'" name="TimePrice3" [(ngModel)]="timePrice3" (ngModelChange)="validateNumber($event)"></tmss-text-input>
+                </div>
+            </div>
+            </div>
+
+            <div class="ui-g-12 text-right mt-1 mr-2 mb-1">
+              <button class="tmss-btn btn-outline-primary mr-2 mt-1 col-2" (click)="createOrUpdate()">
+              <i class="fa tmss-fa fa-save"></i>
+              <span class="ml-1">Lưu</span>
+            </button>
+              <button class="tmss-btn btn-outline-danger mr-2 mt-1 col-2" (click)="hide()">
+              <i class="fa tmss-fa fa-times"></i>
+              <span class="ml-1">Hủy</span>
+            </button>
+          </div>
+        </div>
+    </div>
+</div>

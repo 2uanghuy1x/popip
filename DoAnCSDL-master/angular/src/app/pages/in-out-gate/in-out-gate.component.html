@@ -1,0 +1,65 @@
+<div id="container">
+  <div class="header">
+    <h6 class="card-header">
+      {{ "Tìm kiếm " }}
+    </h6>
+    <div class="row mt-1">
+      <div class="col-4">
+        <tmss-text-input [text]="'Biển số xe'" name="RegisterNo" [(ngModel)]="registerNo"></tmss-text-input>
+      </div>
+      <div class="col-4">
+        <tmss-datepicker [text]="'Từ ngày'" name="FromDate" [(ngModel)]="fromDate"></tmss-datepicker>
+      </div>
+      <div class="col-4">
+        <tmss-datepicker [text]="'Đến ngày'" name="ToDate" [(ngModel)]="toDate"></tmss-datepicker>
+      </div>
+    </div>
+    <div class="row mt-1">
+      <div class="col-4">
+        <tmss-text-input [text]="'Mã thẻ xe'" name="CardId" [(ngModel)]="cardId"></tmss-text-input>
+      </div>
+      <div class="col-4">
+        <tmss-combobox [items]="vhcTypes" [text]="'Loại xe'" name="VhcType" [(ngModel)]="vehicleType"></tmss-combobox>
+      </div>
+      <div class="col-3">
+        <tmss-combobox [items]="statusList" [text]="'Trạng thái'" name="status" [(ngModel)]="status"></tmss-combobox>
+      </div>
+      <div class="col-1">
+        <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="getInOutGate()">
+          <i class="fa tmss-fa fa-search"></i>
+          <span class="ml-1">Tìm kiếm</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main mt-2">
+    <h6 class="card-header">
+      {{ "Danh sách xe vào ra" }}
+    </h6>
+
+    <div class="row mt-1">
+      <div class="col-12">
+        <grid-table [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowData]="pagedRowData"
+          (callBackEvent)="callBackEvent($event)" (changePaginationParams)="changePaginationParams(paginationParams)"
+          [height]="'312px'" [paginationParams]="paginationParams" [frameworkComponents]="frameworkComponents"
+          (cellEditingStopped)="cellEditingStopped($event)" (onChangeSelection)="onChangeSelection($event)">
+        </grid-table>
+      </div>
+    </div>
+    <div class="ui-g-12 text-right mt-2">
+      <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="addInGate()">
+        <i class="fa tmss-fa fa-plus"></i>
+        <span class="ml-1">Thêm xe vào bến</span>
+      </button>
+      <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="outGateAction()">
+        <i class="fa tmss-fa fa-edit"></i>
+        <span class="ml-1">Xe rời bến</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-in-gate #inGate (modalSave)="updateInGateModalSave($event)"></app-in-gate>
+<app-out-gate #outGate (modalSave)="updateOutGateModalSave($event)"></app-out-gate>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="3rem" color="#fff" type="ball-spin-fade-rotating"></ngx-spinner>

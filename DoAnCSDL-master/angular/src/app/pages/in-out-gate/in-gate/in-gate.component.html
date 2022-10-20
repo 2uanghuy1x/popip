@@ -1,0 +1,53 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true">
+    <div class="modal-dialog tmss-modal-md">
+        <div class="modal-content tmss-modal">
+            <div class="tmss-modal-header">
+                <h5 class="modal-title">
+                    <span>{{ "Thêm xe vào bến" }}</span>
+                </h5>
+                <button type="button" class="close" aria-label="Close" (click)="hide()">
+                  <span class="tmss-close" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <tmss-text-input [text]="'Biển số xe'" name="RegisterNo" [(ngModel)]="registerNo" (ngModelChange)="checkHaveMonthlyTicket()"></tmss-text-input>
+                    </div>
+                    <div class="col-6">
+                        <tmss-combobox name="vhcType" [items]="vhcTypes" [text]="'Loại xe'" [(ngModel)]="vhcType" (ngModelChange)="changeVhcType($event)"></tmss-combobox>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <tmss-datepicker [isDisabled]="true" name="InGate" [text]="'Ngày vào'" [(ngModel)]="inDate"></tmss-datepicker>
+                    </div>
+                    <div class="col-6">
+                        <tmss-combobox name="cardId" [text]="'Mã thẻ xe'" [items]="cardList"  [(ngModel)]="cardId"></tmss-combobox>
+                    </div>
+                </div>
+
+                <div class="row mt-1">
+                    <div class="col-6">
+                        <tmss-text-input [text]="'Nhân viên'" [isDisabled]="true" name="EmpId" [(ngModel)]="this.employee.EmpName"></tmss-text-input>
+                    </div>
+
+                    <div class="col-6" *ngIf="this.vhcType == 2">
+                        <tmss-text-input [text]="'Vị trí đỗ'" name="Location" [(ngModel)]="location"></tmss-text-input>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer tmss-modal-footer" style="height: 50px;">
+                <button type="button" class="tmss-btn tmss-footer-btn btn-outline-primary" (click)="updateInGate()" [disabled]="this.registerNo === ''">
+                              <i class="fa tmss-fa fa-save"></i>
+                              <span class="ml-1">{{ "Lưu" }}</span>
+                </button>
+                <button type="button" class="tmss-btn tmss-footer-btn btn-outline-danger" (click)="hide()">
+                              <i class="fa tmss-fa fa-times"></i>
+                              <span class="ml-1">{{ "Thoát" }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

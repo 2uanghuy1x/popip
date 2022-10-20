@@ -1,0 +1,89 @@
+﻿<!-- <div class="row">
+    <div class="col-5 left"></div>
+
+    <div class="col-6 right">
+        <div class="col-8">
+            <div class="header-title">
+                <h3 style="text-align: center;font-size: 2rem;color: #67666e;">Đăng nhập</h3>
+            </div>
+
+            <form (ngSubmit)="onSubmit()">
+                <div style="padding: 0;margin: 0 auto;">
+                    <input type="text" name="UserName" [(ngModel)]="userName" class="form-control body-login-input" placeholder="Tên người dùng *" />
+                </div>
+                <div style="padding: 0;margin: 0 auto;">
+                    <input type="password" name="password" [(ngModel)]="password" class="form-control body-login-input" placeholder="Mật khẩu *" />
+                </div>
+                <div class="mt-4" style="display: flex;">
+                    <input class="body-login-save" type="checkbox" name="rememberMe" value="true">
+                    <label style="margin-left: 10px;">Lưu thông tin</label>
+                </div>
+                <div>
+                    <div class="body-login-button">
+                        <a style="background-color: transparent; font-size: 14px;" routerlink="/account/forgot-password" id="forget-password">Quên mật khẩu?</a>
+                        <button class="btn btn-primary" style="height: 50px;padding-left: 2.5rem;padding-right: 2.5rem;">Đăng nhập</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+<div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+  <div class="card card0 border-0">
+    <form (submit)="onSubmit()">
+      <div class="row d-flex">
+        <div class="col-lg-6">
+          <div class="card1 pb-5">
+            <div class="row"> <img src="https://i.imgur.com/CXQmsmF.png" class="logo"> </div>
+            <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img
+                src="https://i.imgur.com/uNGdWHi.png" class="image"> </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card2 card border-0 px-4 py-5">
+            <div class="row mb-4 px-3">
+              <h6 class="mb-0 mr-4 mt-2">Đăng nhập với</h6>
+              <div class="facebook text-center mr-3">
+                <div class="fa fa-facebook"></div>
+              </div>
+              <div class="twitter text-center mr-3">
+                <div class="fa fa-twitter"></div>
+              </div>
+              <div class="linkedin text-center mr-3">
+                <div class="fa fa-linkedin"></div>
+              </div>
+            </div>
+            <div class="row px-3 mb-4">
+              <div class="line"></div> <small class="or text-center">Hoặc</small>
+              <div class="line"></div>
+            </div>
+            <div class="row px-3"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Tài khoản</h6>
+              </label> <input class="mb-4" type="text" [(ngModel)]="userName" name="email"
+                placeholder="Enter a valid email address"> </div>
+            <div class="row px-3"> <label class="mb-1">
+                <h6 class="mb-0 text-sm">Mật khẩu</h6>
+              </label> <input type="password" name="password" [(ngModel)]="password" placeholder="Enter password">
+            </div>
+            <div class="row px-3 mb-4">
+              <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox"
+                  name="chk" class="custom-control-input"> <label for="chk1" class="custom-control-label text-sm">Lưu
+                  mật khẩu!</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Quên mật khẩu?</a>
+            </div>
+            <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Đăng nhập</button> </div>
+            <div class="row mb-4 px-3"> <small class="font-weight-bold">Bạn chưa có tài khoản? <a
+                (click)="registerModal.show()" class="text-danger ">Đăng ký</a></small> </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="bg-blue py-4">
+      <div class="row px-3"> <small class="ml-4 ml-sm-5 mb-2">Copyright &copy; 2021. All rights reserved.</small>
+        <div class="social-contact ml-4 ml-sm-auto"> <span class="fa fa-facebook mr-4 text-sm"></span> <span
+            class="fa fa-google-plus mr-4 text-sm"></span> <span class="fa fa-linkedin mr-4 text-sm"></span> <span
+            class="fa fa-twitter mr-4 mr-sm-5 text-sm"></span> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-register #registerModal (close)="registerClose($event)"></app-register>

@@ -1,0 +1,43 @@
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="createOrUpdatePriceList" aria-hidden="true" style="margin-top: 3%;">
+    <div class="modal-dialog tmss-modal-md" >
+        <div class="modal-content tmss-modal">
+            <div class="tmss-modal-header">
+                <h6 class="modal-title">
+                     <p *ngIf="!selectedMonthlyTicket?.Id"> Thêm vé tháng </p>
+                    <p *ngIf="selectedMonthlyTicket?.Id"> Sửa vé tháng </p>
+                </h6>
+                <button type="button" class="close" aria-label="Close" (click)="hide()">
+                  <span class="tmss-close" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row mt-1">
+                  <div class="col-6">
+                    <tmss-text-input [text]="'Biển số'" name="TimeFrame1" [(ngModel)]="registerNo"></tmss-text-input>
+                  </div>
+                  <div class="col-6">
+                      <tmss-combobox [text]="'Loại xe'" name="VehicleType" [items]="vhcTypes" [(ngModel)]="vehicleType"></tmss-combobox>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                  <div class="col-6">
+                    <tmss-combobox [text]="'Loại vé tháng'" name="TicketType" [items]="ticketTypes" [(ngModel)]="ticketType"></tmss-combobox>
+                  </div>
+                </div>
+            </div>
+
+            <div class="ui-g-12 text-right mt-1 mr-2 mb-1">
+              <button class="tmss-btn btn-outline-primary mr-2 mt-1 col-2" (click)="createOrUpdate()">
+              <i class="fa tmss-fa fa-save"></i>
+              <span class="ml-1">Lưu</span>
+            </button>
+              <button class="tmss-btn btn-outline-danger mr-2 mt-1 col-2" (click)="hide()">
+              <i class="fa tmss-fa fa-times"></i>
+              <span class="ml-1">Hủy</span>
+            </button>
+          </div>
+        </div>
+    </div>
+</div>

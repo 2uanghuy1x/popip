@@ -1,0 +1,72 @@
+<div id="container">
+  <div class="header">
+    <h6 class="card-header">
+      {{ "Tìm kiếm " }}
+    </h6>
+    <div class="row mt-1">
+      <div class="col-2">
+        <tmss-text-input [text]="'Biển số xe'" name="RegisterNo" [(ngModel)]="registerNo"></tmss-text-input>
+      </div>
+      <div class="col-2">
+        <tmss-text-input [text]="'Nhân viên giải quyết'" name="EmpName" [(ngModel)]="empName"></tmss-text-input>
+      </div>
+      <div class="col-2">
+        <tmss-datepicker [text]="'Từ ngày'" name="FromDate" [(ngModel)]="fromDate"></tmss-datepicker>
+      </div>
+      <div class="col-2">
+        <tmss-datepicker [text]="'Đến ngày'" name="ToDate" [(ngModel)]="toDate"></tmss-datepicker>
+      </div>
+      <div class="col-2">
+        <tmss-combobox [items]="vhcTypes" [text]="'Loại xe'" name="VhcType" [(ngModel)]="vhcType"></tmss-combobox>
+      </div>
+      <div class="col-2">
+        <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="search()">
+          <i class="fa tmss-fa fa-search"></i>
+          <span class="ml-1">Tìm kiếm</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main mt-2">
+    <h6 class="card-header">
+      {{ "Danh sách sự cố" }}
+    </h6>
+
+    <div class="row mt-1">
+      <div class="col-12">
+        <grid-table [columnDefs]="resolveRecordColDef" [defaultColDef]="defaultColDef" [rowData]="resolveRecords"
+          (callBackEvent)="callBackEvent($event)" [height]="'240px'" (onChangeSelection)="onChangeSelectionResolve($event)"
+          (changePaginationParams)="changePaginationParams(paginationParams)" [paginationParams]="paginationParams">
+        </grid-table>
+      </div>
+    </div>
+    <div class="ui-g-12 text-right mt-2">
+      <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="showCreateOrEditResolveRecord(false)">
+        <i class="fa tmss-fa fa-plus"></i>
+        <span class="ml-1">Thêm sự cố</span>
+      </button>
+      <button class="tmss-btn btn-outline-primary mr-2 mt-1" (click)="showCreateOrEditResolveRecord(true)" [disabled]="!selectedData.Id">
+        <i class="fa tmss-fa fa-edit"></i>
+        <span class="ml-1">Sửa sự cố</span>
+      </button>
+      <button class="tmss-btn btn-outline-danger mr-2 mt-1" (click)="removeResolveProblem()" [disabled]="!selectedData.Id">
+        <i class="fa tmss-fa fa-eraser"></i>
+        <span class="ml-1">Xóa sự cố</span>
+      </button>
+    </div>
+  </div>
+  <div class="main mt-2">
+    <h6 class="card-header">{{ "Chi tiết sự cố" }}</h6>
+
+    <div class="row mt-1">
+      <div class="col-12">
+        <grid-table [defaultColDef]="defaultColDef" [columnDefs]="resolveRcdDetailColDef" [rowData]="resolveRcdDetails"
+          [showPagination]="false" [height]="'240px'"></grid-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="3rem" color="#fff" type="ball-spin-fade-rotating"></ngx-spinner>
+<app-create-or-edit-resolve-record #createOrEditResolveRecordModal (modalSave)="search()"></app-create-or-edit-resolve-record>
